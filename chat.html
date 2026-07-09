@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KIDUPRISING — Member Chat</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&family=Courier+Prime&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#060c1a;--navy2:#0a1628;--blue:#1a3a6b;--gold:#c9a84c;--gold2:#e8c060;}
+body{background:var(--navy);color:#f0f4ff;font-family:'Source Sans 3',sans-serif;height:100vh;display:flex;flex-direction:column;}
+.topbar{background:#000;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--gold);flex-shrink:0;}
+.topbar-logo{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;letter-spacing:3px;}
+.topbar-logo span{color:var(--gold);}
+.topbar-right{font-family:'Courier Prime',monospace;font-size:11px;color:#444;letter-spacing:2px;}
+
+.login-screen{flex:1;display:flex;align-items:center;justify-content:center;padding:20px;}
+.login-box{background:var(--blue);border:2px solid var(--gold);padding:52px 44px;max-width:420px;width:100%;text-align:center;}
+.login-icon{font-size:52px;margin-bottom:16px;display:block;filter:drop-shadow(0 0 20px rgba(201,168,76,0.5));}
+.login-box h2{font-family:'Oswald',sans-serif;font-size:26px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;}
+.login-box p{color:#666;font-size:14px;margin-bottom:28px;font-family:'Courier Prime',monospace;letter-spacing:1px;}
+.input{width:100%;background:var(--navy2);border:2px solid #1e2d42;color:#f0f4ff;padding:13px 16px;font-size:15px;font-family:'Source Sans 3',sans-serif;margin-bottom:12px;outline:none;transition:border .2s;}
+.input:focus{border-color:var(--gold);}
+.btn{width:100%;background:var(--gold);border:none;padding:15px;font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:2px;color:#000;cursor:pointer;font-weight:700;transition:background .2s;}
+.btn:hover{background:var(--gold2);}
+
+.chat-screen{flex:1;display:none;flex-direction:column;}
+.chat-header{background:var(--blue);border-bottom:2px solid var(--gold);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.chat-header-left{font-family:'Oswald',sans-serif;font-size:17px;letter-spacing:2px;color:var(--gold);}
+.chat-header-right{font-size:13px;color:#666;font-family:'Courier Prime',monospace;}
+.online-dot{display:inline-block;width:8px;height:8px;background:#22c55e;border-radius:50%;margin-right:6px;}
+
+.messages{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:12px;}
+.messages::-webkit-scrollbar{width:4px;}
+.messages::-webkit-scrollbar-thumb{background:#1e2d42;}
+
+.msg{display:flex;gap:12px;align-items:flex-start;}
+.msg.mine{flex-direction:row-reverse;}
+.msg-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:15px;color:var(--gold);flex-shrink:0;}
+.msg-body{max-width:65%;}
+.msg-meta{font-size:11px;color:#444;margin-bottom:4px;font-family:'Courier Prime',monospace;letter-spacing:1px;}
+.msg.mine .msg-meta{text-align:right;}
+.msg-bubble{background:var(--blue);border:1px solid rgba(201,168,76,0.2);padding:11px 15px;font-size:15px;line-height:1.5;}
+.msg.mine .msg-bubble{background:rgba(201,168,76,0.15);border-color:var(--gold);}
+.msg-time{font-size:10px;color:#333;margin-top:4px;font-family:'Courier Prime',monospace;}
+.msg.mine .msg-time{text-align:right;}
+.system-msg{text-align:center;font-family:'Courier Prime',monospace;font-size:11px;color:#333;letter-spacing:2px;padding:4px 0;}
+
+.chat-input-area{background:#030710;border-top:2px solid var(--gold);padding:16px 24px;display:flex;gap:12px;flex-shrink:0;}
+.chat-input{flex:1;background:var(--navy2);border:2px solid #1e2d42;color:#f0f4ff;padding:13px 16px;font-size:15px;font-family:'Source Sans 3',sans-serif;outline:none;transition:border .2s;}
+.chat-input:focus{border-color:var(--gold);}
+.send-btn{background:var(--gold);border:none;padding:13px 28px;font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:2px;color:#000;cursor:pointer;font-weight:700;transition:background .2s;flex-shrink:0;}
+.send-btn:hover{background:var(--gold2);}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-logo">KID<span>UPRISING</span> <span style="font-size:13px;color:#333;margin-left:8px;font-family:'Courier Prime',monospace;">SECURE CHANNEL</span></div>
+  <div class="topbar-right">// MEMBERS ONLY</div>
+</div>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <span class="login-icon">⚡</span>
+    <h2>ENTER THE CHANNEL</h2>
+    <p>// KIDUPRISING MEMBERS ONLY</p>
+    <input class="input" id="realName" placeholder="Your Name" />
+    <input class="input" id="codeName" placeholder="Code Name (optional)" />
+    <input class="input" id="rankInput" placeholder="Your Rank (e.g. CADET)" />
+    <button class="btn" onclick="joinChat()">JOIN SECURE CHANNEL →</button>
+  </div>
+</div>
+
+<div class="chat-screen" id="chatScreen">
+  <div class="chat-header">
+    <div class="chat-header-left">⚡ KIDUPRISING SECURE CHANNEL</div>
+    <div class="chat-header-right"><span class="online-dot"></span><span id="myNameDisplay"></span></div>
+  </div>
+  <div class="messages" id="messages"></div>
+  <div class="chat-input-area">
+    <input class="chat-input" id="msgInput" placeholder="Type your message..." onkeydown="if(event.key==='Enter') sendMsg()" />
+    <button class="send-btn" onclick="sendMsg()">SEND</button>
+  </div>
+</div>
+
+<script>
+let myName='',myCode='',myRank='';
+function joinChat(){
+  const n=document.getElementById('realName').value.trim();
+  const c=document.getElementById('codeName').value.trim();
+  const r=document.getElementById('rankInput').value.trim().toUpperCase()||'CADET';
+  if(!n){alert('Enter your name!');return;}
+  myName=n;myCode=c||n;myRank=r;
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('chatScreen').style.display='flex';
+  document.getElementById('myNameDisplay').textContent=myName+' ['+myRank+']';
+  addSystemMsg(myName+' joined the secure channel.');
+  loadMessages();
+  document.getElementById('msgInput').focus();
+  setInterval(loadMessages,3000);
+}
+function getMessages(){try{return JSON.parse(localStorage.getItem('ku_chat')||'[]');}catch(e){return[];}}
+function saveMessages(msgs){localStorage.setItem('ku_chat',JSON.stringify(msgs.slice(-200)));}
+function sendMsg(){
+  const txt=document.getElementById('msgInput').value.trim();
+  if(!txt)return;
+  const msgs=getMessages();
+  msgs.push({name:myName,code:myCode,rank:myRank,text:txt,time:new Date().toISOString(),id:Date.now()});
+  saveMessages(msgs);
+  document.getElementById('msgInput').value='';
+  loadMessages();
+}
+let lastCount=0;
+function loadMessages(){
+  const msgs=getMessages();
+  if(msgs.length===lastCount)return;
+  lastCount=msgs.length;
+  const el=document.getElementById('messages');
+  el.innerHTML='';
+  msgs.forEach(m=>{
+    if(m.system){
+      const d=document.createElement('div');
+      d.className='system-msg';
+      d.textContent='// '+m.text;
+      el.appendChild(d);return;
+    }
+    const isMine=m.name===myName;
+    const time=new Date(m.time).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    const d=document.createElement('div');
+    d.className='msg'+(isMine?' mine':'');
+    d.innerHTML=`<div class="msg-avatar">${m.name.charAt(0).toUpperCase()}</div>
+      <div class="msg-body">
+        <div class="msg-meta">${m.name} · ${m.rank}</div>
+        <div class="msg-bubble">${m.text.replace(/</g,'&lt;')}</div>
+        <div class="msg-time">${time}</div>
+      </div>`;
+    el.appendChild(d);
+  });
+  el.scrollTop=el.scrollHeight;
+}
+function addSystemMsg(txt){
+  const msgs=getMessages();
+  msgs.push({system:true,text:txt,time:new Date().toISOString(),id:Date.now()});
+  saveMessages(msgs);
+}
+</script>
+</body>
+</html>

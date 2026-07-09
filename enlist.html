@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Enlist — KIDUPRISING Worldwide</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600;700;900&family=Courier+Prime:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#060c1a;--navy2:#0a1628;--blue:#1a3a6b;--gold:#c9a84c;--gold2:#e8c060;--red:#8b0000;--silver:#a0a8b8;}
+body{background:var(--navy);color:#f0f4ff;font-family:'Source Sans 3',sans-serif;}
+nav{background:rgba(6,12,26,0.98);border-bottom:3px solid var(--gold);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;letter-spacing:4px;color:#f0f4ff;text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.nav-back{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;color:var(--silver);text-decoration:none;transition:color .2s;}
+.nav-back:hover{color:var(--gold);}
+
+.hero{background:radial-gradient(ellipse at center,#0f1f3d,#060c1a);padding:80px 20px 60px;text-align:center;border-bottom:3px solid var(--gold);}
+.hero-tag{background:var(--red);padding:6px 24px;font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:5px;display:inline-block;margin-bottom:24px;}
+.hero-icon{font-size:72px;filter:drop-shadow(0 0 30px rgba(201,168,76,0.6));margin-bottom:20px;display:block;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
+h1{font-family:'Oswald',sans-serif;font-size:clamp(40px,7vw,80px);letter-spacing:6px;margin-bottom:12px;}
+h1 span{color:var(--gold);}
+.hero-sub{font-size:17px;color:var(--silver);max-width:540px;margin:0 auto;line-height:1.7;}
+
+.form-wrap{max-width:720px;margin:60px auto;padding:0 24px 100px;}
+
+.form-section{margin-bottom:48px;}
+.form-section-title{font-family:'Oswald',sans-serif;font-size:16px;letter-spacing:4px;color:var(--gold);border-bottom:1px solid #1e2d42;padding-bottom:12px;margin-bottom:28px;}
+
+.field{margin-bottom:20px;}
+label{display:block;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:8px;}
+input,select,textarea{width:100%;background:#0a1628;border:2px solid #1e2d42;color:#f0f4ff;padding:14px 18px;font-family:'Source Sans 3',sans-serif;font-size:15px;transition:border-color .2s;outline:none;}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);}
+select option{background:#0a1628;}
+textarea{resize:vertical;min-height:100px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+.rank-preview{background:var(--navy2);border:2px solid var(--gold);padding:24px 28px;margin-bottom:28px;display:flex;align-items:center;gap:24px;}
+.rank-preview-icon{font-size:48px;}
+.rank-preview-info{flex:1;}
+.rank-preview-label{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:3px;color:#555;margin-bottom:4px;}
+.rank-preview-rank{font-family:'Oswald',sans-serif;font-size:28px;letter-spacing:3px;color:var(--gold);}
+.rank-preview-league{font-size:13px;color:var(--silver);margin-top:4px;}
+
+.oath-box{background:#0a1628;border:2px solid #1e2d42;border-left:4px solid var(--gold);padding:28px;margin-bottom:24px;}
+.oath-title{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:4px;color:var(--gold);margin-bottom:16px;}
+.oath-text{font-style:italic;color:var(--silver);line-height:1.9;font-size:15px;margin-bottom:20px;}
+.checkbox-row{display:flex;align-items:flex-start;gap:14px;}
+.checkbox-row input[type=checkbox]{width:22px;height:22px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);}
+.checkbox-row label{color:#f0f4ff;font-size:15px;letter-spacing:0;margin-bottom:0;font-family:'Source Sans 3',sans-serif;}
+
+.btn-submit{width:100%;background:var(--gold);border:none;padding:22px;font-family:'Oswald',sans-serif;font-size:24px;letter-spacing:4px;color:#000;cursor:pointer;font-weight:700;transition:all .2s;margin-top:8px;}
+.btn-submit:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 40px rgba(201,168,76,0.4);}
+.btn-note{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;color:#444;text-align:center;margin-top:12px;}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">KID<span>UPRISING</span></a>
+  <a href="index.html" class="nav-back">← BACK TO HQ</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">⚠ OFFICIAL ENLISTMENT — WORLDWIDE</div>
+  <span class="hero-icon">⚡</span>
+  <h1>ENLIST IN <span>KIDUPRISING</span></h1>
+  <p class="hero-sub">Fill out this form to become an official KIDUPRISING member. You start at Rank 1 — Cadet. Rise through 35 ranks. Change the world.</p>
+</div>
+
+<div class="form-wrap">
+
+  <!-- STARTING RANK PREVIEW -->
+  <div class="rank-preview">
+    <div class="rank-preview-icon">⚡</div>
+    <div class="rank-preview-info">
+      <div class="rank-preview-label">// YOUR STARTING RANK</div>
+      <div class="rank-preview-rank">RANK 1 — CADET</div>
+      <div class="rank-preview-league">SHADOW LEAGUE · Complete missions to rise through 35 ranks</div>
+    </div>
+  </div>
+
+  <form action="https://formsubmit.co/troungnvo@icloud.com" method="POST">
+    <input type="hidden" name="_subject" value="⚡ NEW KIDUPRISING ENLISTMENT!">
+    <input type="hidden" name="_next" value="thanks.html">
+    <input type="hidden" name="_captcha" value="false">
+
+    <!-- PERSONAL INFO -->
+    <div class="form-section">
+      <div class="form-section-title">// SECTION 1 — PERSONAL INFORMATION</div>
+      <div class="field-row">
+        <div class="field"><label>FULL NAME *</label><input type="text" name="name" placeholder="Your real name" required></div>
+        <div class="field"><label>CODE NAME (optional)</label><input type="text" name="codename" placeholder="Your KIDUPRISING alias"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>AGE *</label><input type="number" name="age" placeholder="Your age" min="5" max="99" required></div>
+        <div class="field"><label>CITY & COUNTRY *</label><input type="text" name="location" placeholder="e.g. Ladera Ranch, CA" required></div>
+      </div>
+      <div class="field"><label>EMAIL (so HQ can contact you) *</label><input type="email" name="email" placeholder="your@email.com" required></div>
+    </div>
+
+    <!-- BACKGROUND -->
+    <div class="form-section">
+      <div class="form-section-title">// SECTION 2 — YOUR BACKGROUND</div>
+      <div class="field">
+        <label>HAVE YOU EVER SEEN SOMEONE GET HURT OR BULLIED? *</label>
+        <select name="experience" required>
+          <option value="">Select one</option>
+          <option>Yes, it happened to me</option>
+          <option>Yes, I saw it happen to someone else</option>
+          <option>Both — me and others</option>
+          <option>No, but I want to prevent it</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>WHY DO YOU WANT TO JOIN KIDUPRISING? *</label>
+        <textarea name="why" placeholder="Tell us why you want to rise up and fight for kids worldwide..." required></textarea>
+      </div>
+      <div class="field">
+        <label>WHAT WOULD YOU DO IF YOU SAW SOMEONE BEING HURT? *</label>
+        <textarea name="action" placeholder="Describe exactly what you would do..." required></textarea>
+      </div>
+      <div class="field">
+        <label>WHAT MISSION WOULD YOU START WITH?</label>
+        <select name="first_mission">
+          <option value="">Select a mission</option>
+          <option>Stand Up — defend someone being bullied</option>
+          <option>Recruit — bring a new member in</option>
+          <option>Community Act — do good in my community</option>
+          <option>Spread the Word — tell 10 people about KIDUPRISING</option>
+          <option>Chapter Launch — start a chapter at my school</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- OATH -->
+    <div class="form-section">
+      <div class="form-section-title">// SECTION 3 — THE KIDUPRISING OATH</div>
+      <div class="oath-box">
+        <div class="oath-title">⚡ OFFICIAL OATH OF KIDUPRISING</div>
+        <p class="oath-text">"I, as a member of KIDUPRISING, swear to rise up for every kid who has been silenced, hurt, or ignored. To use my rank not for power, but for purpose. To complete my missions with honesty and courage. To recruit others into this movement and grow it until the world has no choice but to listen. To never stop rising — no matter my age, my size, or my rank. I am KIDUPRISING."</p>
+        <div class="checkbox-row">
+          <input type="checkbox" name="oath" id="oath" required>
+          <label for="oath">I take the KIDUPRISING oath. I mean every word.</label>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit">⚡ ENLIST NOW — JOIN THE MOVEMENT</button>
+    <p class="btn-note">// YOU WILL RECEIVE YOUR RANK 1 CADET CARD IMMEDIATELY · FREE FOREVER</p>
+  </form>
+</div>
+</body>
+</html>

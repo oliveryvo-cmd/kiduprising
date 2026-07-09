@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KIDUPRISING — Worldwide Movement</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;600;700;900&family=Courier+Prime:wght@400;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#060c1a;
+  --navy2:#0a1628;
+  --navy3:#0f1f3d;
+  --blue:#1a3a6b;
+  --gold:#c9a84c;
+  --gold2:#e8c060;
+  --red:#8b0000;
+  --silver:#a0a8b8;
+  --white:#f0f4ff;
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--white);font-family:'Source Sans 3',sans-serif;overflow-x:hidden;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#000;}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ── TICKER ── */
+.ticker{background:#000;border-bottom:2px solid var(--gold);padding:8px 0;overflow:hidden;position:relative;}
+.ticker-inner{display:flex;white-space:nowrap;animation:tick 40s linear infinite;}
+.ticker-inner span{font-family:'Courier Prime',monospace;font-size:12px;color:var(--gold);letter-spacing:2px;padding:0 60px;}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── NAV ── */
+nav{background:rgba(6,12,26,0.98);border-bottom:3px solid var(--gold);padding:0 40px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;height:72px;}
+.nav-logo{display:flex;align-items:center;gap:16px;}
+.nav-seal{width:48px;height:48px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:24px;background:var(--navy2);}
+.nav-brand{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;letter-spacing:4px;color:var(--white);}
+.nav-brand span{color:var(--gold);}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;color:var(--silver);text-decoration:none;transition:color .2s;padding:4px 0;border-bottom:2px solid transparent;}
+.nav-links a:hover{color:var(--gold);border-bottom-color:var(--gold);}
+.nav-enlist{background:var(--gold);color:#000;padding:10px 24px;font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:2px;font-weight:700;text-decoration:none;transition:background .2s;}
+.nav-enlist:hover{background:var(--gold2);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:radial-gradient(ellipse at 50% 40%,#0f1f3d,#060c1a 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 20px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+
+.hero-classified{background:var(--red);padding:6px 28px;font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:6px;margin-bottom:32px;display:inline-block;}
+.hero-seal{font-size:100px;margin-bottom:24px;filter:drop-shadow(0 0 40px rgba(201,168,76,0.5));animation:sealPulse 3s ease-in-out infinite;}
+@keyframes sealPulse{0%,100%{filter:drop-shadow(0 0 40px rgba(201,168,76,0.5));}50%{filter:drop-shadow(0 0 80px rgba(201,168,76,0.9));}}
+
+.hero-eyebrow{font-family:'Courier Prime',monospace;font-size:12px;letter-spacing:6px;color:var(--gold);margin-bottom:16px;}
+h1.hero-title{font-family:'Oswald',sans-serif;font-size:clamp(56px,10vw,120px);font-weight:700;letter-spacing:8px;line-height:0.9;color:var(--white);margin-bottom:8px;}
+h1.hero-title span{color:var(--gold);display:block;}
+.hero-sub{font-family:'Oswald',sans-serif;font-size:clamp(14px,2.5vw,22px);letter-spacing:6px;color:var(--silver);margin-bottom:48px;max-width:700px;}
+
+.hero-stats{display:flex;gap:60px;margin-bottom:60px;flex-wrap:wrap;justify-content:center;}
+.hero-stat{text-align:center;}
+.hero-stat-num{font-family:'Oswald',sans-serif;font-size:42px;font-weight:700;color:var(--gold);display:block;}
+.hero-stat-label{font-size:11px;letter-spacing:3px;color:var(--silver);}
+
+.hero-btns{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+.btn-primary{background:var(--gold);color:#000;padding:18px 48px;font-family:'Oswald',sans-serif;font-size:20px;letter-spacing:3px;font-weight:700;text-decoration:none;transition:all .2s;display:inline-block;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.4);}
+.btn-secondary{background:transparent;color:var(--gold);padding:18px 48px;font-family:'Oswald',sans-serif;font-size:20px;letter-spacing:3px;font-weight:700;text-decoration:none;border:2px solid var(--gold);transition:all .2s;display:inline-block;}
+.btn-secondary:hover{background:rgba(201,168,76,0.1);}
+
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:3px;color:#444;font-family:'Courier Prime',monospace;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.hero-scroll::after{content:'▼';color:var(--gold);animation:bounce 2s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+/* ── SECTION BASE ── */
+section{padding:100px 40px;}
+.section-tag{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:5px;color:var(--gold);margin-bottom:16px;display:block;}
+.section-title{font-family:'Oswald',sans-serif;font-size:clamp(32px,5vw,56px);font-weight:700;letter-spacing:4px;margin-bottom:16px;}
+.section-line{width:80px;height:3px;background:var(--gold);margin-bottom:40px;}
+.section-desc{font-size:17px;color:var(--silver);max-width:680px;line-height:1.8;}
+.container{max-width:1200px;margin:0 auto;}
+
+/* ── MISSION STATEMENT ── */
+.mission{background:var(--navy2);border-top:3px solid var(--gold);border-bottom:3px solid var(--gold);padding:80px 40px;text-align:center;}
+.mission-quote{font-family:'Oswald',sans-serif;font-size:clamp(22px,4vw,42px);font-weight:300;letter-spacing:3px;color:var(--white);max-width:900px;margin:0 auto 32px;line-height:1.4;}
+.mission-quote strong{color:var(--gold);font-weight:700;}
+.mission-author{font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:4px;color:var(--silver);}
+
+/* ── PILLARS ── */
+.pillars{background:var(--navy);}
+.pillars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-top:60px;}
+.pillar{background:var(--navy2);padding:48px 36px;border-top:3px solid transparent;transition:border-color .3s,transform .3s;}
+.pillar:hover{border-top-color:var(--gold);transform:translateY(-4px);}
+.pillar-icon{font-size:48px;margin-bottom:20px;display:block;}
+.pillar-title{font-family:'Oswald',sans-serif;font-size:22px;letter-spacing:3px;color:var(--gold);margin-bottom:12px;}
+.pillar-desc{font-size:15px;color:var(--silver);line-height:1.7;}
+
+/* ── LEAGUES ── */
+.leagues{background:var(--navy3);}
+.leagues-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px;}
+.league-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.league-block{padding:48px 32px;position:relative;overflow:hidden;}
+.league-block::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.league-shadow{background:#0a1628;}.league-shadow::before{background:linear-gradient(90deg,#444,#888);}
+.league-iron{background:#0d1a2e;}.league-iron::before{background:linear-gradient(90deg,#6e7f8f,#b0c0d0);}
+.league-titan{background:#12203a;}.league-titan::before{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.league-name{font-family:'Oswald',sans-serif;font-size:28px;letter-spacing:4px;margin-bottom:8px;}
+.league-shadow .league-name{color:#888;}
+.league-iron .league-name{color:#b0c0d0;}
+.league-titan .league-name{color:var(--gold);}
+.league-range{font-family:'Courier Prime',monospace;font-size:12px;letter-spacing:3px;color:#555;margin-bottom:20px;}
+.league-desc{font-size:14px;color:var(--silver);line-height:1.7;margin-bottom:24px;}
+.league-ranks-list{display:flex;flex-direction:column;gap:6px;}
+.rank-item{display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(0,0,0,0.3);}
+.rank-num{font-family:'Courier Prime',monospace;font-size:11px;color:#555;width:24px;flex-shrink:0;}
+.rank-name{font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:1px;}
+.league-shadow .rank-name{color:#aaa;}
+.league-iron .rank-name{color:#c0d0e0;}
+.league-titan .rank-name{color:var(--gold);}
+.rank-badge{margin-left:auto;font-size:10px;letter-spacing:2px;padding:2px 8px;}
+.league-shadow .rank-badge{background:#1a1a1a;color:#666;}
+.league-iron .rank-badge{background:#1a2530;color:#8090a0;}
+.league-titan .rank-badge{background:rgba(201,168,76,0.15);color:var(--gold);}
+
+/* ── FOUNDER ── */
+.founder-bar{background:#000;border-top:4px solid var(--gold);border-bottom:4px solid var(--gold);padding:40px;text-align:center;margin-top:2px;}
+.founder-bar-title{font-family:'Oswald',sans-serif;font-size:clamp(24px,4vw,48px);letter-spacing:6px;color:var(--gold);}
+.founder-bar-sub{font-family:'Courier Prime',monospace;font-size:13px;letter-spacing:4px;color:#555;margin-top:8px;}
+
+/* ── MISSIONS ── */
+.missions{background:var(--navy2);}
+.missions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2px;margin-top:60px;}
+.mission-card{background:var(--navy);padding:40px 32px;border-left:4px solid var(--gold);position:relative;}
+.mission-card-num{position:absolute;top:24px;right:24px;font-family:'Oswald',sans-serif;font-size:64px;font-weight:700;color:rgba(201,168,76,0.06);line-height:1;}
+.mission-card-icon{font-size:36px;margin-bottom:16px;display:block;}
+.mission-card-title{font-family:'Oswald',sans-serif;font-size:20px;letter-spacing:2px;color:var(--gold);margin-bottom:8px;}
+.mission-card-desc{font-size:14px;color:var(--silver);line-height:1.7;margin-bottom:16px;}
+.mission-card-xp{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;color:#555;}
+
+/* ── WORLD MAP ── */
+.worldmap{background:var(--navy);text-align:center;padding:100px 40px;}
+.globe{font-size:120px;filter:drop-shadow(0 0 60px rgba(201,168,76,0.4));animation:spin 20s linear infinite;display:inline-block;margin:40px 0;}
+@keyframes spin{0%{transform:rotateY(0deg);}100%{transform:rotateY(360deg);}}
+.world-stats{display:flex;justify-content:center;gap:80px;flex-wrap:wrap;margin-top:40px;}
+.world-stat{text-align:center;}
+.world-stat-num{font-family:'Oswald',sans-serif;font-size:52px;font-weight:700;color:var(--gold);}
+.world-stat-label{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:3px;color:#555;margin-top:4px;}
+
+/* ── NEWS ── */
+.news{background:var(--navy3);}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;margin-top:60px;}
+.news-card{background:var(--navy2);overflow:hidden;}
+.news-card-top{background:var(--blue);padding:24px 28px;border-bottom:3px solid var(--gold);}
+.news-card-tag{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);}
+.news-card-title{font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);margin-top:8px;}
+.news-card-body{padding:24px 28px;}
+.news-card-desc{font-size:14px;color:var(--silver);line-height:1.7;margin-bottom:16px;}
+.news-card-date{font-family:'Courier Prime',monospace;font-size:11px;color:#444;letter-spacing:2px;}
+
+/* ── HALL OF FAME ── */
+.hof{background:var(--navy2);text-align:center;}
+.hof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;margin-top:60px;}
+.hof-card{background:var(--navy);padding:40px 24px;border-top:3px solid var(--gold);}
+.hof-avatar{font-size:56px;margin-bottom:16px;display:block;}
+.hof-name{font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:2px;color:var(--white);margin-bottom:4px;}
+.hof-rank{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);}
+.hof-missions{font-size:13px;color:#555;margin-top:8px;}
+
+/* ── ENLIST CTA ── */
+.enlist-cta{background:#000;border-top:4px solid var(--gold);border-bottom:4px solid var(--gold);padding:120px 40px;text-align:center;position:relative;overflow:hidden;}
+.enlist-cta::before{content:'KIDUPRISING KIDUPRISING KIDUPRISING KIDUPRISING KIDUPRISING KIDUPRISING KIDUPRISING KIDUPRISING KIDUPRISING KIDUPRISING';position:absolute;top:20px;left:0;right:0;font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:8px;color:rgba(201,168,76,0.04);white-space:nowrap;overflow:hidden;}
+.cta-icon{font-size:80px;margin-bottom:24px;display:block;filter:drop-shadow(0 0 30px rgba(201,168,76,0.6));}
+.cta-title{font-family:'Oswald',sans-serif;font-size:clamp(36px,7vw,80px);letter-spacing:6px;margin-bottom:16px;}
+.cta-title span{color:var(--gold);}
+.cta-sub{font-size:18px;color:var(--silver);max-width:600px;margin:0 auto 48px;line-height:1.7;}
+.cta-small{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:3px;color:#444;margin-top:24px;}
+
+/* ── FOOTER ── */
+footer{background:#000;border-top:3px solid #111;padding:60px 40px 40px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;}
+.footer-brand{font-family:'Oswald',sans-serif;font-size:28px;letter-spacing:4px;color:var(--white);margin-bottom:12px;}
+.footer-brand span{color:var(--gold);}
+.footer-tagline{font-size:14px;color:#555;line-height:1.7;max-width:260px;}
+.footer-col h4{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:3px;color:var(--gold);margin-bottom:20px;}
+.footer-col a{display:block;font-size:14px;color:#555;text-decoration:none;margin-bottom:10px;transition:color .2s;}
+.footer-col a:hover{color:var(--white);}
+.footer-bottom{border-top:1px solid #111;margin-top:60px;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:2px;color:#333;}
+.footer-gear{color:#333;font-size:14px;text-decoration:none;transition:color .2s;}
+.footer-gear:hover{color:var(--gold);}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0;}
+
+/* ── COUNTER ANIMATION ── */
+.count-up{display:inline-block;}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>⚡ KIDUPRISING IS GROWING WORLDWIDE</span>
+    <span>▪ 35 RANKS — FROM CADET TO ETERNAL EMPEROR</span>
+    <span>▪ 3 LEAGUES — SHADOW · IRON · TITAN</span>
+    <span>▪ FOUNDED BY OLIVER VO, SUPREME FOUNDER</span>
+    <span>▪ EVERY KID DESERVES POWER AND RESPECT</span>
+    <span>▪ JOIN THE MOVEMENT — ENLIST NOW</span>
+    <span>⚡ KIDUPRISING IS GROWING WORLDWIDE</span>
+    <span>▪ 35 RANKS — FROM CADET TO ETERNAL EMPEROR</span>
+    <span>▪ 3 LEAGUES — SHADOW · IRON · TITAN</span>
+    <span>▪ FOUNDED BY OLIVER VO, SUPREME FOUNDER</span>
+    <span>▪ EVERY KID DESERVES POWER AND RESPECT</span>
+    <span>▪ JOIN THE MOVEMENT — ENLIST NOW</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-seal">⚡</div>
+    <div class="nav-brand">KID<span>UPRISING</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#mission">MISSION</a>
+    <a href="#leagues">RANKS</a>
+    <a href="#missions-section">MISSIONS</a>
+    <a href="#world">WORLD</a>
+    <a href="#news">NEWS</a>
+    <a href="#hof">HALL OF FAME</a>
+    <a href="enlist.html" class="nav-enlist">ENLIST NOW</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-classified">⚠ WORLDWIDE MOVEMENT — ACTIVE</div>
+  <div class="hero-seal">⚡</div>
+  <p class="hero-eyebrow">ESTABLISHED 2026 — LADERA RANCH, CA</p>
+  <h1 class="hero-title">KID<span>UPRISING</span></h1>
+  <p class="hero-sub">THE WORLDWIDE MOVEMENT WHERE EVERY KID RISES UP</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num count-up" data-target="12847">0</span>
+      <span class="hero-stat-label">MEMBERS WORLDWIDE</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num count-up" data-target="194">0</span>
+      <span class="hero-stat-label">COUNTRIES</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">35</span>
+      <span class="hero-stat-label">RANKS</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num count-up" data-target="48291">0</span>
+      <span class="hero-stat-label">MISSIONS COMPLETED</span>
+    </div>
+  </div>
+
+  <div class="hero-btns">
+    <a href="enlist.html" class="btn-primary">⚡ ENLIST NOW</a>
+    <a href="#mission" class="btn-secondary">LEARN MORE</a>
+  </div>
+
+  <div class="hero-scroll">SCROLL DOWN</div>
+</div>
+
+<!-- MISSION STATEMENT -->
+<div class="mission" id="mission">
+  <p class="mission-quote">"Adults run the world. But <strong>kids ARE the world.</strong> KIDUPRISING exists to give every kid on earth real power, real voice, and real respect — until the world has no choice but to listen."</p>
+  <p class="mission-author">— OLIVER VO, SUPREME FOUNDER · KIDUPRISING HQ · LADERA RANCH, CA</p>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="container">
+    <span class="section-tag">// WHAT WE STAND FOR</span>
+    <h2 class="section-title">THE 6 PILLARS</h2>
+    <div class="section-line"></div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <span class="pillar-icon">🛡️</span>
+        <div class="pillar-title">PROTECTION</div>
+        <p class="pillar-desc">No kid gets left behind. We stand up for every child who is being hurt, bullied, or ignored. Our members are trained to protect — not fight, but defend.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🗣️</span>
+        <div class="pillar-title">VOICE</div>
+        <p class="pillar-desc">Kids have ideas that adults ignore. KIDUPRISING amplifies every voice until the world hears us. Your opinion matters. Your ideas matter. You matter.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">⚡</span>
+        <div class="pillar-title">POWER</div>
+        <p class="pillar-desc">Real power isn't size or age. It's influence, knowledge, and community. KIDUPRISING builds kid power through ranks, missions, and brotherhood.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🌍</span>
+        <div class="pillar-title">UNITY</div>
+        <p class="pillar-desc">Every country. Every language. Every background. KIDUPRISING unites kids across the entire world under one mission — rise together or not at all.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🏆</span>
+        <div class="pillar-title">ACHIEVEMENT</div>
+        <p class="pillar-desc">Every mission completed, every rank earned, every life changed — it counts. KIDUPRISING tracks your impact and celebrates every achievement publicly.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">⚖️</span>
+        <div class="pillar-title">JUSTICE</div>
+        <p class="pillar-desc">Kids deserve rights. KIDUPRISING's top ranks submit real proposals to governments worldwide, pushing for laws that protect and empower every child on earth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LEAGUES & RANKS -->
+<section class="leagues" id="leagues">
+  <div class="container">
+    <span class="section-tag">// RANK STRUCTURE</span>
+    <h2 class="section-title">35 RANKS · 3 LEAGUES</h2>
+    <div class="section-line"></div>
+    <p class="section-desc">Every member starts at Rank 1. Complete missions. Earn points. Rise through the leagues. The higher you climb, the more power and responsibility you carry. Above all 35 ranks stands one person — the Supreme Founder.</p>
+  </div>
+
+  <div style="max-width:1400px;margin:60px auto 0;padding:0 40px;">
+    <div class="league-blocks">
+
+      <!-- SHADOW LEAGUE -->
+      <div class="league-block league-shadow">
+        <div class="league-name">SHADOW LEAGUE</div>
+        <div class="league-range">RANKS 1 — 10</div>
+        <p class="league-desc">The beginning. Unknown to the world, you are learning the mission, earning your place, and proving you belong in KIDUPRISING.</p>
+        <div class="league-ranks-list">
+          <div class="rank-item"><span class="rank-num">01</span><span class="rank-name">Cadet</span><span class="rank-badge">ENTRY</span></div>
+          <div class="rank-item"><span class="rank-num">02</span><span class="rank-name">Private</span><span class="rank-badge">SHADOW</span></div>
+          <div class="rank-item"><span class="rank-num">03</span><span class="rank-name">Private First Class</span><span class="rank-badge">SHADOW</span></div>
+          <div class="rank-item"><span class="rank-num">04</span><span class="rank-name">Specialist</span><span class="rank-badge">SHADOW</span></div>
+          <div class="rank-item"><span class="rank-num">05</span><span class="rank-name">Corporal</span><span class="rank-badge">SHADOW</span></div>
+          <div class="rank-item"><span class="rank-num">06</span><span class="rank-name">Sergeant</span><span class="rank-badge">SHADOW</span></div>
+          <div class="rank-item"><span class="rank-num">07</span><span class="rank-name">Staff Sergeant</span><span class="rank-badge">SHADOW</span></div>
+          <div class="rank-item"><span class="rank-num">08</span><span class="rank-name">Sergeant First Class</span><span class="rank-badge">SHADOW</span></div>
+          <div class="rank-item"><span class="rank-num">09</span><span class="rank-name">Master Sergeant</span><span class="rank-badge">SHADOW</span></div>
+          <div class="rank-item"><span class="rank-num">10</span><span class="rank-name">Sergeant Major</span><span class="rank-badge">SHADOW</span></div>
+        </div>
+      </div>
+
+      <!-- IRON LEAGUE -->
+      <div class="league-block league-iron">
+        <div class="league-name">IRON LEAGUE</div>
+        <div class="league-range">RANKS 11 — 20</div>
+        <p class="league-desc">Battle tested. You have proven yourself. You now lead others, run local chapters, and shape the direction of KIDUPRISING on the ground.</p>
+        <div class="league-ranks-list">
+          <div class="rank-item"><span class="rank-num">11</span><span class="rank-name">Second Lieutenant</span><span class="rank-badge">IRON</span></div>
+          <div class="rank-item"><span class="rank-num">12</span><span class="rank-name">First Lieutenant</span><span class="rank-badge">IRON</span></div>
+          <div class="rank-item"><span class="rank-num">13</span><span class="rank-name">Captain</span><span class="rank-badge">IRON</span></div>
+          <div class="rank-item"><span class="rank-num">14</span><span class="rank-name">Major</span><span class="rank-badge">IRON</span></div>
+          <div class="rank-item"><span class="rank-num">15</span><span class="rank-name">Lieutenant Colonel</span><span class="rank-badge">IRON</span></div>
+          <div class="rank-item"><span class="rank-num">16</span><span class="rank-name">Colonel</span><span class="rank-badge">IRON</span></div>
+          <div class="rank-item"><span class="rank-num">17</span><span class="rank-name">Brigadier General</span><span class="rank-badge">IRON</span></div>
+          <div class="rank-item"><span class="rank-num">18</span><span class="rank-name">Major General</span><span class="rank-badge">IRON</span></div>
+          <div class="rank-item"><span class="rank-num">19</span><span class="rank-name">Lieutenant General</span><span class="rank-badge">IRON</span></div>
+          <div class="rank-item"><span class="rank-num">20</span><span class="rank-name">General</span><span class="rank-badge">IRON</span></div>
+        </div>
+      </div>
+
+      <!-- TITAN LEAGUE -->
+      <div class="league-block league-titan">
+        <div class="league-name">TITAN LEAGUE</div>
+        <div class="league-range">RANKS 21 — 35</div>
+        <p class="league-desc">The most powerful kids on earth. Titans run the movement, shape global strategy, and submit proposals to governments worldwide.</p>
+        <div class="league-ranks-list">
+          <div class="rank-item"><span class="rank-num">21</span><span class="rank-name">General of the Army</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">22</span><span class="rank-name">Field Marshal</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">23</span><span class="rank-name">Supreme Commander</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">24</span><span class="rank-name">Grand Marshal</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">25</span><span class="rank-name">High Commander</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">26</span><span class="rank-name">War Chief</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">27</span><span class="rank-name">Grand Warlord</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">28</span><span class="rank-name">Supreme Warlord</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">29</span><span class="rank-name">Eternal Commander</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">30</span><span class="rank-name">Grand Sovereign</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">31</span><span class="rank-name">High Sovereign</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">32</span><span class="rank-name">Supreme Sovereign</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">33</span><span class="rank-name">Grand Emperor</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">34</span><span class="rank-name">Supreme Emperor</span><span class="rank-badge">TITAN</span></div>
+          <div class="rank-item"><span class="rank-num">35</span><span class="rank-name">Eternal Emperor</span><span class="rank-badge">TITAN</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOUNDER BAR -->
+    <div class="founder-bar">
+      <div class="founder-bar-title">⚡ OLIVER VO — SUPREME FOUNDER ⚡</div>
+      <div class="founder-bar-sub">ABOVE ALL 35 RANKS · KIDUPRISING HQ · LADERA RANCH, CA · EST. 2026</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MISSIONS -->
+<section class="missions" id="missions-section">
+  <div class="container">
+    <span class="section-tag">// WHAT MEMBERS DO</span>
+    <h2 class="section-title">ACTIVE MISSIONS</h2>
+    <div class="section-line"></div>
+    <p class="section-desc">Missions are real actions that members take in the real world. Complete them to earn points, rise in rank, and prove your commitment to the movement.</p>
+    <div class="missions-grid">
+      <div class="mission-card">
+        <div class="mission-card-num">01</div>
+        <span class="mission-card-icon">🛡️</span>
+        <div class="mission-card-title">STAND UP</div>
+        <p class="mission-card-desc">Find someone being bullied or left out and stand up for them. Document what happened and what you did. Submitted reports reviewed by leadership.</p>
+        <div class="mission-card-xp">// +500 XP · SHADOW LEAGUE · ANY RANK</div>
+      </div>
+      <div class="mission-card">
+        <span class="mission-card-num">02</span>
+        <span class="mission-card-icon">🤝</span>
+        <div class="mission-card-title">RECRUIT</div>
+        <p class="mission-card-desc">Bring a new member into KIDUPRISING. Explain the mission to them, help them enlist, and guide them through their first week. Growth is how we win.</p>
+        <div class="mission-card-xp">// +400 XP · SHADOW LEAGUE · RANK 3+</div>
+      </div>
+      <div class="mission-card">
+        <span class="mission-card-num">03</span>
+        <span class="mission-card-icon">🌍</span>
+        <div class="mission-card-title">COMMUNITY ACT</div>
+        <p class="mission-card-desc">Do one meaningful thing in your community every week. Help someone, clean something, organize something. Real action in the real world.</p>
+        <div class="mission-card-xp">// +300 XP · ALL LEAGUES · WEEKLY</div>
+      </div>
+      <div class="mission-card">
+        <span class="mission-card-num">04</span>
+        <span class="mission-card-icon">📢</span>
+        <div class="mission-card-title">SPREAD THE WORD</div>
+        <p class="mission-card-desc">Tell 10 people about KIDUPRISING. Post about the movement. Get our message out to kids who need to hear it. Every voice multiplied is power.</p>
+        <div class="mission-card-xp">// +250 XP · SHADOW LEAGUE · RANK 1+</div>
+      </div>
+      <div class="mission-card">
+        <span class="mission-card-num">05</span>
+        <span class="mission-card-icon">📋</span>
+        <div class="mission-card-title">CHAPTER LAUNCH</div>
+        <p class="mission-card-desc">Start a KIDUPRISING chapter at your school. Get at least 5 members together and hold your first meeting. Report back to HQ with a full briefing.</p>
+        <div class="mission-card-xp">// +1500 XP · IRON LEAGUE · RANK 13+</div>
+      </div>
+      <div class="mission-card">
+        <span class="mission-card-num">06</span>
+        <span class="mission-card-icon">⚖️</span>
+        <div class="mission-card-title">WRITE A LAW</div>
+        <p class="mission-card-desc">Titan League members only. Write a real proposal to protect kids' rights. Submit to your local government. HQ will support your proposal worldwide.</p>
+        <div class="mission-card-xp">// +5000 XP · TITAN LEAGUE · RANK 25+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORLD -->
+<div class="worldmap" id="world">
+  <div class="container">
+    <span class="section-tag">// GLOBAL PRESENCE</span>
+    <h2 class="section-title">WE ARE EVERYWHERE</h2>
+    <div class="section-line" style="margin:0 auto 40px;"></div>
+    <p class="section-desc" style="margin:0 auto;">KIDUPRISING members are in every continent on earth. Every country. Every school. The movement is growing every single day.</p>
+    <div class="globe">🌍</div>
+    <div class="world-stats">
+      <div class="world-stat">
+        <div class="world-stat-num count-up" data-target="12847">0</div>
+        <div class="world-stat-label">TOTAL MEMBERS</div>
+      </div>
+      <div class="world-stat">
+        <div class="world-stat-num count-up" data-target="194">0</div>
+        <div class="world-stat-label">COUNTRIES</div>
+      </div>
+      <div class="world-stat">
+        <div class="world-stat-num count-up" data-target="847">0</div>
+        <div class="world-stat-label">CHAPTERS</div>
+      </div>
+      <div class="world-stat">
+        <div class="world-stat-num count-up" data-target="48291">0</div>
+        <div class="world-stat-label">MISSIONS DONE</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- NEWS -->
+<section class="news" id="news">
+  <div class="container">
+    <span class="section-tag">// LATEST INTELLIGENCE</span>
+    <h2 class="section-title">MOVEMENT NEWS</h2>
+    <div class="section-line"></div>
+    <div class="news-grid">
+      <div class="news-card">
+        <div class="news-card-top">
+          <div class="news-card-tag">⚡ BREAKING</div>
+          <div class="news-card-title">KIDUPRISING LAUNCHES WORLDWIDE — MOVEMENT BEGINS</div>
+        </div>
+        <div class="news-card-body">
+          <p class="news-card-desc">Oliver Vo, age 10, officially launches KIDUPRISING — a worldwide movement to give every kid on earth real power, real voice, and real respect. Enlistment is now open to all kids globally.</p>
+          <div class="news-card-date">// JULY 8, 2026 — LADERA RANCH, CA</div>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-card-top">
+          <div class="news-card-tag">📋 RANKS</div>
+          <div class="news-card-title">ALL 35 RANKS OFFICIALLY CONFIRMED — 3 LEAGUES ACTIVE</div>
+        </div>
+        <div class="news-card-body">
+          <p class="news-card-desc">Supreme Founder Oliver Vo confirms the full rank structure: Shadow League (1-10), Iron League (11-20), and Titan League (21-35). Enlist now to claim your starting rank of Cadet.</p>
+          <div class="news-card-date">// JULY 8, 2026 — KIDUPRISING HQ</div>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-card-top">
+          <div class="news-card-tag">🌍 GLOBAL</div>
+          <div class="news-card-title">KIDUPRISING DAY ANNOUNCED — EVERY KID, ONE DAY, ONE MISSION</div>
+        </div>
+        <div class="news-card-body">
+          <p class="news-card-desc">HQ has announced the first ever KIDUPRISING DAY — one day where every member worldwide completes one mission at the exact same moment. Date to be revealed soon.</p>
+          <div class="news-card-date">// COMING SOON — WORLDWIDE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HALL OF FAME -->
+<section class="hof" id="hof">
+  <div class="container">
+    <span class="section-tag">// TOP MEMBERS</span>
+    <h2 class="section-title">HALL OF FAME</h2>
+    <div class="section-line" style="margin:0 auto 16px;"></div>
+    <p class="section-desc" style="margin:0 auto;">The kids who rose the highest. Who completed the most missions. Who changed the most lives. This is where legends live.</p>
+    <div class="hof-grid">
+      <div class="hof-card">
+        <span class="hof-avatar">⚡</span>
+        <div class="hof-name">OLIVER VO</div>
+        <div class="hof-rank">SUPREME FOUNDER</div>
+        <div class="hof-missions">FOUNDED THE MOVEMENT</div>
+      </div>
+      <div class="hof-card">
+        <span class="hof-avatar">🏆</span>
+        <div class="hof-name">???</div>
+        <div class="hof-rank">ETERNAL EMPEROR · RANK 35</div>
+        <div class="hof-missions">COULD THIS BE YOU?</div>
+      </div>
+      <div class="hof-card">
+        <span class="hof-avatar">🌟</span>
+        <div class="hof-name">???</div>
+        <div class="hof-rank">SUPREME EMPEROR · RANK 34</div>
+        <div class="hof-missions">COULD THIS BE YOU?</div>
+      </div>
+      <div class="hof-card">
+        <span class="hof-avatar">💎</span>
+        <div class="hof-name">???</div>
+        <div class="hof-rank">GRAND EMPEROR · RANK 33</div>
+        <div class="hof-missions">COULD THIS BE YOU?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENLIST CTA -->
+<div class="enlist-cta">
+  <span class="cta-icon">⚡</span>
+  <h2 class="cta-title">ARE YOU <span>READY</span> TO RISE?</h2>
+  <p class="cta-sub">The world isn't going to change itself. Every Eternal Emperor started as a Cadet. Your rank starts at 1. Your story starts NOW.</p>
+  <a href="enlist.html" class="btn-primary">⚡ ENLIST IN KIDUPRISING</a>
+  <p class="cta-small">// FREE TO JOIN · WORLDWIDE · OPEN TO ALL KIDS</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">KID<span>UPRISING</span></div>
+      <p class="footer-tagline">The worldwide movement giving every kid on earth real power, real voice, and real respect.</p>
+    </div>
+    <div class="footer-col">
+      <h4>MOVEMENT</h4>
+      <a href="#mission">Our Mission</a>
+      <a href="#leagues">Rank Structure</a>
+      <a href="#missions-section">Missions</a>
+      <a href="#world">World Map</a>
+    </div>
+    <div class="footer-col">
+      <h4>MEMBERS</h4>
+      <a href="enlist.html">Enlist Now</a>
+      <a href="chat.html">Member Chat</a>
+      <a href="#hof">Hall of Fame</a>
+      <a href="#news">News</a>
+    </div>
+    <div class="footer-col">
+      <h4>COMPANIES</h4>
+      <a href="../dbp/index.html">S.A.B.O</a>
+      <a href="../amidon/index.html">AMIDON</a>
+      <a href="../ove/index.html">O.V.E Store</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>// KIDUPRISING WORLDWIDE · FOUNDED 2026 · LADERA RANCH, CA · OLIVER VO, SUPREME FOUNDER</p>
+    <a href="secret-admin.html" class="footer-gear">⚙</a>
+  </div>
+</footer>
+
+<script>
+// Count-up animation
+function animateCount(el){
+  const target = parseInt(el.dataset.target);
+  const duration = 2000;
+  const step = target / (duration / 16);
+  let current = 0;
+  const timer = setInterval(()=>{
+    current = Math.min(current + step, target);
+    el.textContent = Math.floor(current).toLocaleString();
+    if(current >= target) clearInterval(timer);
+  }, 16);
+}
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting && !e.target.dataset.done){
+      e.target.dataset.done = '1';
+      animateCount(e.target);
+    }
+  });
+},{threshold:0.5});
+
+document.querySelectorAll('.count-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

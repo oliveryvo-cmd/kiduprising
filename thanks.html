@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Welcome to KIDUPRISING — You're In!</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;700&family=Courier+Prime:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#060c1a;--gold:#c9a84c;--gold2:#e8c060;}
+body{background:var(--navy);color:#f0f4ff;font-family:'Source Sans 3',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}
+
+.welcome-icon{font-size:90px;margin-bottom:24px;filter:drop-shadow(0 0 40px rgba(201,168,76,0.8));animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+.welcome-tag{background:#8b0000;padding:6px 28px;font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:5px;margin-bottom:24px;display:inline-block;}
+h1{font-family:'Oswald',sans-serif;font-size:clamp(32px,7vw,72px);letter-spacing:5px;margin-bottom:8px;}
+h1 span{color:var(--gold);}
+.sub{font-size:17px;color:#a0a8b8;margin-bottom:48px;max-width:520px;line-height:1.7;}
+
+.card-wrap{margin:0 auto 40px;max-width:360px;width:100%;}
+.rank-card{background:#0a1628;border:3px solid var(--gold);padding:36px 32px;box-shadow:0 0 80px rgba(201,168,76,0.25);position:relative;}
+.rank-card::before{content:'';position:absolute;inset:8px;border:1px solid rgba(201,168,76,0.15);pointer-events:none;}
+.card-org{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:4px;color:var(--gold);margin-bottom:8px;}
+.card-movement{font-family:'Oswald',sans-serif;font-size:28px;letter-spacing:4px;color:#f0f4ff;margin-bottom:4px;}
+.card-movement span{color:var(--gold);}
+.card-divider{border:none;border-top:1px solid #1e2d42;margin:20px 0;}
+.card-league{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:4px;color:#555;margin-bottom:8px;}
+.card-rank{font-family:'Oswald',sans-serif;font-size:42px;font-weight:700;color:var(--gold);letter-spacing:3px;margin-bottom:4px;}
+.card-rank-num{font-family:'Courier Prime',monospace;font-size:12px;letter-spacing:3px;color:#555;margin-bottom:16px;}
+.card-desc{font-size:13px;color:#888;line-height:1.7;font-style:italic;margin-bottom:20px;}
+.card-fields{display:flex;flex-direction:column;gap:8px;text-align:left;}
+.card-field{font-size:12px;color:#666;font-family:'Courier Prime',monospace;letter-spacing:1px;}
+.card-field span{color:#f0f4ff;font-weight:700;}
+.card-seal{font-size:32px;margin-top:20px;}
+
+.print-btn{background:var(--gold);border:none;padding:16px 40px;font-family:'Oswald',sans-serif;font-size:20px;letter-spacing:3px;color:#000;cursor:pointer;font-weight:700;display:block;width:100%;max-width:360px;margin-bottom:12px;transition:background .2s;}
+.print-btn:hover{background:var(--gold2);}
+.back{color:var(--gold);font-weight:700;font-size:15px;text-decoration:none;letter-spacing:1px;border-bottom:1px solid var(--gold);padding-bottom:2px;}
+
+@media print{
+  body{background:#fff;}
+  .welcome-icon,.welcome-tag,h1,.sub,.print-btn,.back{display:none;}
+  .rank-card{border-color:#000;box-shadow:none;background:#fff;color:#000;}
+  .card-org,.card-league,.card-rank-num{color:#555;}
+  .card-movement{color:#000;}
+  .card-movement span,.card-rank{color:#000;}
+  .card-field{color:#333;}
+  .card-field span{color:#000;}
+}
+</style>
+</head>
+<body>
+<div class="welcome-icon">⚡</div>
+<div class="welcome-tag">⚠ ENLISTMENT CONFIRMED — MOVEMENT ACTIVE</div>
+<h1>YOU'RE IN, <span>CADET.</span></h1>
+<p class="sub">Your application has been received by KIDUPRISING HQ. Screenshot or print your official Rank 1 card below. Your mission starts NOW.</p>
+
+<div class="card-wrap">
+  <div class="rank-card">
+    <div class="card-org">// OFFICIAL MEMBERSHIP CARD</div>
+    <div class="card-movement">KID<span>UPRISING</span></div>
+    <hr class="card-divider">
+    <div class="card-league">SHADOW LEAGUE · ENTRY LEVEL</div>
+    <div class="card-rank">CADET</div>
+    <div class="card-rank-num">RANK 01 OF 35</div>
+    <p class="card-desc">Just enlisted. Unknown to the world — for now. Learn the mission. Complete your first missions. Rise through 35 ranks. The journey of a thousand miles starts here.</p>
+    <div class="card-fields">
+      <div class="card-field">NAME: <span id="memberName">New Member</span></div>
+      <div class="card-field">DATE ENLISTED: <span id="enlistDate"></span></div>
+      <div class="card-field">LEAGUE: <span>SHADOW LEAGUE</span></div>
+      <div class="card-field">STATUS: <span>ACTIVE · WORLDWIDE</span></div>
+      <div class="card-field">AUTHORIZED: <span>Oliver Vo, Supreme Founder</span></div>
+    </div>
+    <div class="card-seal">⚡</div>
+  </div>
+</div>
+
+<button class="print-btn" onclick="window.print()">🖨️ PRINT YOUR CARD</button>
+<a href="index.html" class="back">← BACK TO KIDUPRISING HQ</a>
+
+<script>
+document.getElementById('enlistDate').textContent = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+const params = new URLSearchParams(window.location.search);
+if(params.get('name')) document.getElementById('memberName').textContent = params.get('name');
+</script>
+</body>
+</html>
